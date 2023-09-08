@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notepad App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            background-image: url(notepad\ background\ 1.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            opacity: 500%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            margin-left: 500px;
+        }
+
+        .notepad {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        textarea {
+            width: 380px;
+            height: 200px;
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="notepad">
+        <textarea id="textarea" placeholder="Type your text here..."></textarea>
+        <div class="buttons">
+            <button id="save-button">Save</button>
+            <button id="clear-button">Clear</button>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const textarea = document.getElementById("textarea");
+            const saveButton = document.getElementById("save-button");
+            const clearButton = document.getElementById("clear-button");
+
+            // Check if there is saved text in localStorage
+            const savedText = localStorage.getItem("notepadText");
+            if (savedText) {
+                textarea.value = savedText;
+            }
+
+            // Save button click event
+            saveButton.addEventListener("click", function () {
+                const textToSave = textarea.value;
+                localStorage.setItem("notepadText", textToSave);
+                alert("Text saved successfully!");
+            });
+
+            // Clear button click event
+            clearButton.addEventListener("click", function () {
+                localStorage.clear();
+                textarea.value = "";
+            });
+        });
+    </script>
+</body>
+
+</html>
